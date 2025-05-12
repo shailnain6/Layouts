@@ -10,34 +10,40 @@ import SwiftUI
 struct ContentView: View {
     @State private var message = "A quick brown fox jumps over the lazy dog."
     var body: some View {
-        VStack {
-            Spacer()
-            Text(message)
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .minimumScaleFactor(0.5)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(Color("C-Blue"))
-                .padding()
-                .frame(height: 150)
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            Spacer()
-            HStack {
-                Button("Awesome"){
-                    message = "You are Awesome!!"
-                }
+        GeometryReader(content: { geometry in
+            VStack {
                 Spacer()
-                Button("Great"){
-                    message = "You are Great!"
+                Text(message)
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                    .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(Color("CGreen"))
+                    .padding()
+                    .frame(height: 150)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                Spacer()
+                Rectangle()
+                    .fill(.cGreen)
+                    .frame(width: geometry.size.width * 2/3, height: 1)
+                    .padding()
+                HStack {
+                    Button("Awesome"){
+                        message = "You are Awesome!!"
+                    }
+                    Spacer()
+                    Button("Great"){
+                        message = "You are Great!"
+                    }
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(.cGreen)
             }
-            .buttonStyle(.borderedProminent)
-            .tint(.cGrean)
-        }
-        .padding()
-        .background(
-            Gradient(colors: [.teal, .indigo])
-        )
+            .padding()
+            .background(
+                Gradient(colors: [.teal, .indigo])
+            )
+        })
         
     }
 }
